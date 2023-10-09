@@ -5,6 +5,10 @@ import builder.interfaceBuilder.BigHouseBuilder;
 import builder.interfaceBuilder.House2;
 import builder.interfaceBuilder.HouseDirector;
 import builder.interfaceBuilder.SmallHouseBuilder;
+import factory.Unit;
+import factory.methodType.Factory;
+import factory.methodType.UnitFactory;
+import factory.methodType.UnitType;
 import observer.notification.Email;
 import observer.notification.MobileApp;
 import observer.notification.TextMessage;
@@ -19,6 +23,7 @@ public class Main {
         main.launchObserver();
         main.launchSingleton();
         main.launchBuilder();
+        main.launchFactory();
     }
 
     public void launchObserver() {
@@ -49,6 +54,7 @@ public class Main {
     }
 
     public void launchBuilder() {
+        System.out.println("****BUILDER****");
         System.out.println("****INNER CLASS BUILDER****");
 
         House1 house1 = new House1.HouseBuilder()
@@ -74,5 +80,17 @@ public class Main {
 
         System.out.println(smallHouse.toString());
         System.out.println(bigHouse.toString());
+    }
+
+    public void launchFactory() {
+        System.out.println("****FACTORY****");
+        System.out.println("****METHOD TYPE FACTORY****");
+
+        Factory factory = new UnitFactory();
+        Unit tank = factory.createUnit(UnitType.TANK);
+        Unit rifleman = factory.createUnit(UnitType.RIFLEMAN);
+
+        System.out.println(tank.toString());
+        System.out.println(rifleman.toString());
     }
 }
