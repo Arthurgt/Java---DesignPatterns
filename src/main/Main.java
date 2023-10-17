@@ -8,7 +8,7 @@ import builder.interfaceBuilder.SmallHouseBuilder;
 import factory.Unit;
 import factory.methodType.Factory;
 import factory.methodType.UnitFactory;
-import factory.methodType.UnitType;
+import factory.UnitType;
 import observer.notification.Email;
 import observer.notification.MobileApp;
 import observer.notification.TextMessage;

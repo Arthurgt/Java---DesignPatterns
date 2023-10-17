@@ -1,4 +1,4 @@
-package factory.methodType;
+package factory;
 public enum UnitType{
     RIFLEMAN, TANK;
 }

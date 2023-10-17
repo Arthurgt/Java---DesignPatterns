@@ -1,8 +1,7 @@
 package factory.methodType;
 
-import factory.Rifleman;
-import factory.Tank;
 import factory.Unit;
+import factory.UnitType;
 
 public class UnitFactory extends Factory {
     @Override
