@@ -9,6 +9,9 @@ import factory.Unit;
 import factory.methodType.Factory;
 import factory.methodType.UnitFactory;
 import factory.UnitType;
+import flyweight.DestroyerUnit;
+import flyweight.KnifeUnit;
+import flyweight.RifleUnit;
 import observer.notification.Email;
 import observer.notification.MobileApp;
 import observer.notification.TextMessage;
@@ -17,6 +20,9 @@ import observer.order.OrderStatus;
 import singleton.GameEngine;
 import singleton.GameEngineEnum;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         Main main = new Main();
@@ -24,6 +30,7 @@ public class Main {
         main.launchSingleton();
         main.launchBuilder();
         main.launchFactory();
+        main.launchFlyweight();
     }
 
     public void launchObserver() {
@@ -92,5 +99,16 @@ public class Main {
 
         System.out.println(tank.toString());
         System.out.println(rifleman.toString());
+    }
+
+    public void launchFlyweight() {
+        System.out.println("****FLYWEIGHT****");
+
+        List<Object> activeUnits = new ArrayList<>();
+        for(int i=0; i<1000; i++){
+            activeUnits.add(new DestroyerUnit(0, 0));
+            activeUnits.add(new RifleUnit(10, 0));
+            activeUnits.add(new KnifeUnit(30, 0));
+        }
     }
 }
