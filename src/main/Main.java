@@ -6,6 +6,7 @@ import builder.interfaceBuilder.BigHouseBuilder;
 import builder.interfaceBuilder.House2;
 import builder.interfaceBuilder.HouseDirector;
 import builder.interfaceBuilder.SmallHouseBuilder;
+import decorator.*;
 import factory.Unit;
 import factory.methodType.Factory;
 import factory.methodType.UnitFactory;
@@ -33,6 +34,7 @@ public class Main {
         main.launchFactory();
         main.launchFlyweight();
         main.launchAdapter();
+        main.launchDecorator();
     }
 
     public void launchObserver() {
@@ -141,5 +143,21 @@ public class Main {
         TwoWayUKContinentalAdapter twoWayAdapter = new TwoWayUKContinentalAdapter(englishRadio,radio);
         ukSocket.plugIn(twoWayAdapter);
         continentalSocket.plugIn(twoWayAdapter);
+    }
+
+    public void launchDecorator() {
+        System.out.println("****Decorator****");
+        Terrain plain = new Plain();
+        Terrain hill = new Hill();
+        Terrain swampHill = new SwampDecorator(new Hill());
+        Terrain forestPlain = new ForestDecorator(new Plain());
+        Terrain swampPlain = new SwampDecorator(new Plain());
+        Terrain forestHill = new ForestDecorator(new Hill());
+        System.out.println("Normal plain fuel cost: " + plain.getFuelCost());
+        System.out.println("Normal hill fuel cost: " + hill.getFuelCost());
+        System.out.println("Swamp hill fuel cost: " + swampHill.getFuelCost());
+        System.out.println("Forest plain fuel cost: " + forestPlain.getFuelCost());
+        System.out.println("Forest hill fuel cost: " + forestHill.getFuelCost());
+        System.out.println("Swamp plain fuel cost: " + swampPlain.getFuelCost());
     }
 }
