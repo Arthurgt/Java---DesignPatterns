@@ -1,5 +1,6 @@
 package main;
 
+import adapter.*;
 import builder.innerClassBuilder.House1;
 import builder.interfaceBuilder.BigHouseBuilder;
 import builder.interfaceBuilder.House2;
@@ -31,6 +32,7 @@ public class Main {
         main.launchBuilder();
         main.launchFactory();
         main.launchFlyweight();
+        main.launchAdapter();
     }
 
     public void launchObserver() {
@@ -110,5 +112,34 @@ public class Main {
             activeUnits.add(new RifleUnit(10, 0));
             activeUnits.add(new KnifeUnit(30, 0));
         }
+    }
+
+    public void launchAdapter() {
+        System.out.println("****ADAPTER****");
+
+        ContinentalDevice radio = new ContinentalDevice() {
+            @Override
+            public void powerOn() {
+                System.out.println("Music plays");
+            }
+        };
+        ContinentalSocket continentalSocket = new ContinentalSocket();
+        continentalSocket.plugIn(radio);
+
+        UKDevice englishRadio = new UKDevice() {
+            @Override
+            public void play() {
+                System.out.println("Music from english radio plays");
+            }
+        };
+        System.out.println("-ONE WAY ADAPTER-");
+        UKToContinentalAdapter adapter = new UKToContinentalAdapter(englishRadio);
+        continentalSocket.plugIn(adapter);
+
+        System.out.println("-TWO WAY ADAPTER-");
+        UKSocket ukSocket = new UKSocket();
+        TwoWayUKContinentalAdapter twoWayAdapter = new TwoWayUKContinentalAdapter(englishRadio,radio);
+        ukSocket.plugIn(twoWayAdapter);
+        continentalSocket.plugIn(twoWayAdapter);
     }
 }
