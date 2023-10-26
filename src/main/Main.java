@@ -22,6 +22,9 @@ import observer.order.Order;
 import observer.order.OrderStatus;
 import singleton.GameEngine;
 import singleton.GameEngineEnum;
+import template.StartAutomaticCarSequence;
+import template.StartCarSequence;
+import template.StartClassicCarSequence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +40,7 @@ public class Main {
         main.launchAdapter();
         main.launchDecorator();
         main.launchChainOfResponsibility();
+        main.launchTemplate();
         System.out.println();
     }
 
@@ -181,5 +185,14 @@ public class Main {
         sergeant.setSuperiorOfficer(captain);
         captain.setSuperiorOfficer(general);
         sergeant.processMessage(message);
+    }
+
+    public void launchTemplate() {
+        System.out.println();
+        System.out.println("****TEMPLATE****");
+        StartCarSequence classicSequence = new StartClassicCarSequence();
+        StartCarSequence automaticSequence = new StartAutomaticCarSequence();
+        classicSequence.startTheCar();
+        automaticSequence.startTheCar();
     }
 }
