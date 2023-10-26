@@ -6,6 +6,7 @@ import builder.interfaceBuilder.BigHouseBuilder;
 import builder.interfaceBuilder.House2;
 import builder.interfaceBuilder.HouseDirector;
 import builder.interfaceBuilder.SmallHouseBuilder;
+import chainOfResponsibility.*;
 import decorator.*;
 import factory.Unit;
 import factory.methodType.Factory;
@@ -35,9 +36,12 @@ public class Main {
         main.launchFlyweight();
         main.launchAdapter();
         main.launchDecorator();
+        main.launchChainOfResponsibility();
+        System.out.println();
     }
 
     public void launchObserver() {
+        System.out.println();
         System.out.println("****OBSERVER****");
 
         Order order = new Order(110L, OrderStatus.REGISTERED);
@@ -55,6 +59,7 @@ public class Main {
     }
 
     public void launchSingleton() {
+        System.out.println();
         System.out.println("****SINGLETON****");
 
         GameEngine engine = GameEngine.getInstance();
@@ -65,6 +70,7 @@ public class Main {
     }
 
     public void launchBuilder() {
+        System.out.println();
         System.out.println("****BUILDER****");
         System.out.println("****INNER CLASS BUILDER****");
 
@@ -94,6 +100,7 @@ public class Main {
     }
 
     public void launchFactory() {
+        System.out.println();
         System.out.println("****FACTORY****");
         System.out.println("****METHOD TYPE FACTORY****");
 
@@ -106,6 +113,7 @@ public class Main {
     }
 
     public void launchFlyweight() {
+        System.out.println();
         System.out.println("****FLYWEIGHT****");
 
         List<Object> activeUnits = new ArrayList<>();
@@ -117,6 +125,7 @@ public class Main {
     }
 
     public void launchAdapter() {
+        System.out.println();
         System.out.println("****ADAPTER****");
 
         ContinentalDevice radio = new ContinentalDevice() {
@@ -146,6 +155,7 @@ public class Main {
     }
 
     public void launchDecorator() {
+        System.out.println();
         System.out.println("****Decorator****");
         Terrain plain = new Plain();
         Terrain hill = new Hill();
@@ -159,5 +169,17 @@ public class Main {
         System.out.println("Forest plain fuel cost: " + forestPlain.getFuelCost());
         System.out.println("Forest hill fuel cost: " + forestHill.getFuelCost());
         System.out.println("Swamp plain fuel cost: " + swampPlain.getFuelCost());
+    }
+
+    public void launchChainOfResponsibility() {
+        System.out.println();
+        System.out.println("****CHAIN OF RESPONSIBILITY****");
+        Message message = new Message("Attack!", 20, OfficerRank.CAPTAIN);
+        Officer sergeant = new Sergeant();
+        Officer captain = new Captain();
+        Officer general = new General();
+        sergeant.setSuperiorOfficer(captain);
+        captain.setSuperiorOfficer(general);
+        sergeant.processMessage(message);
     }
 }
