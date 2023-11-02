@@ -1,5 +1,5 @@
 # DesignPatterns
-Implementations of design patterns in Java. Implemented patterns:
+Implementations of design patterns in Java with real examples. Implemented patterns:
 
 Creational patterns:
 -Builder
