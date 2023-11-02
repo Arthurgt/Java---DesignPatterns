@@ -16,6 +16,8 @@ import factory.UnitType;
 import flyweight.DestroyerUnit;
 import flyweight.KnifeUnit;
 import flyweight.RifleUnit;
+import memento.SmartApp;
+import memento.SmartAppCareTaker;
 import observer.notification.Email;
 import observer.notification.MobileApp;
 import observer.notification.TextMessage;
@@ -43,6 +45,7 @@ public class Main {
         main.launchChainOfResponsibility();
         main.launchTemplate();
         main.launchCommand();
+        main.launchMemento();
         System.out.println();
     }
 
@@ -208,5 +211,17 @@ public class Main {
         workshop.addCommandToQueue(new RobotDrillCommand(robot));
         workshop.addCommandToQueue(new RobotTurnOffCommand(robot));
         workshop.run();
+    }
+
+    public void launchMemento() {
+        System.out.println();
+        System.out.println("****MEMENTO****");
+        SmartAppCareTaker smartAppCareTaker = new SmartAppCareTaker();
+        SmartApp smartApp = new SmartApp();
+        smartApp.changeVersion(1.0);
+        smartAppCareTaker.addMemento(smartApp.save());
+        smartApp.changeVersion(2.0);
+        smartAppCareTaker.addMemento(smartApp.save());
+        smartApp.load(smartAppCareTaker.getMemento(0));
     }
 }
