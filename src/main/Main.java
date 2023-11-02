@@ -7,6 +7,7 @@ import builder.interfaceBuilder.House2;
 import builder.interfaceBuilder.HouseDirector;
 import builder.interfaceBuilder.SmallHouseBuilder;
 import chainOfResponsibility.*;
+import command.*;
 import decorator.*;
 import factory.Unit;
 import factory.methodType.Factory;
@@ -41,6 +42,7 @@ public class Main {
         main.launchDecorator();
         main.launchChainOfResponsibility();
         main.launchTemplate();
+        main.launchCommand();
         System.out.println();
     }
 
@@ -194,5 +196,17 @@ public class Main {
         StartCarSequence automaticSequence = new StartAutomaticCarSequence();
         classicSequence.startTheCar();
         automaticSequence.startTheCar();
+    }
+
+    public void launchCommand() {
+        System.out.println();
+        System.out.println("****LAUNCH****");
+        Robot robot = new Robot();
+        Workshop workshop = new Workshop();
+        workshop.addCommandToQueue(new RobotTurnOnCommand(robot));
+        workshop.addCommandToQueue(new RobotCutCommand(robot));
+        workshop.addCommandToQueue(new RobotDrillCommand(robot));
+        workshop.addCommandToQueue(new RobotTurnOffCommand(robot));
+        workshop.run();
     }
 }
