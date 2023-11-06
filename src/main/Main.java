@@ -25,6 +25,10 @@ import observer.order.Order;
 import observer.order.OrderStatus;
 import singleton.GameEngine;
 import singleton.GameEngineEnum;
+import strategy.Chef;
+import strategy.EggCooker;
+import strategy.HardBoiledEggCooker;
+import strategy.SoftBoiledEggCooker;
 import template.StartAutomaticCarSequence;
 import template.StartCarSequence;
 import template.StartClassicCarSequence;
@@ -46,6 +50,7 @@ public class Main {
         main.launchTemplate();
         main.launchCommand();
         main.launchMemento();
+        main.launchStrategy();
         System.out.println();
     }
 
@@ -223,5 +228,17 @@ public class Main {
         smartApp.changeVersion(2.0);
         smartAppCareTaker.addMemento(smartApp.save());
         smartApp.load(smartAppCareTaker.getMemento(0));
+    }
+
+    public void launchStrategy() {
+        System.out.println();
+        System.out.println("****STRATEGY****");
+        Chef chef = new Chef("Gordon");
+        EggCooker strategy = new HardBoiledEggCooker();
+        chef.setEggCooker(strategy);
+        chef.cook();
+        strategy = new SoftBoiledEggCooker();
+        chef.setEggCooker(strategy);
+        chef.cook();
     }
 }
