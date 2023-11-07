@@ -1,5 +1,3 @@
-package main;
-
 import adapter.*;
 import builder.innerClassBuilder.House1;
 import builder.interfaceBuilder.BigHouseBuilder;
@@ -25,6 +23,7 @@ import observer.order.Order;
 import observer.order.OrderStatus;
 import singleton.GameEngine;
 import singleton.GameEngineEnum;
+import state.CoffeeMachine;
 import strategy.Chef;
 import strategy.EggCooker;
 import strategy.HardBoiledEggCooker;
@@ -54,6 +53,7 @@ public class Main {
         main.launchMemento();
         main.launchStrategy();
         main.launchVisitor();
+        main.launchState();
         System.out.println();
     }
 
@@ -257,5 +257,14 @@ public class Main {
         weights.accept(visitor);
         List<Activity> activities = Arrays.asList(treadmill, squash, weights);
         activities.forEach(activity -> activity.accept(visitor));
+    }
+
+    public void launchState() {
+        System.out.println();
+        System.out.println("****STATE****");
+        CoffeeMachine coffeeMachine = new CoffeeMachine();
+        coffeeMachine.insertTheCoin();
+        coffeeMachine.pushTheButton();
+        coffeeMachine.takeTheCup();
     }
 }
