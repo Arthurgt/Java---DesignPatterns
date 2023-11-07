@@ -32,8 +32,10 @@ import strategy.SoftBoiledEggCooker;
 import template.StartAutomaticCarSequence;
 import template.StartCarSequence;
 import template.StartClassicCarSequence;
+import visitor.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -51,6 +53,7 @@ public class Main {
         main.launchCommand();
         main.launchMemento();
         main.launchStrategy();
+        main.launchVisitor();
         System.out.println();
     }
 
@@ -240,5 +243,19 @@ public class Main {
         strategy = new SoftBoiledEggCooker();
         chef.setEggCooker(strategy);
         chef.cook();
+    }
+
+    public void launchVisitor() {
+        System.out.println();
+        System.out.println("****VISITOR****");
+        Treadmill treadmill = new Treadmill(200);
+        Squash squash = new Squash(35);
+        Weights weights = new Weights(50, 10);
+        VisitorImpl visitor = new VisitorImpl();
+        treadmill.accept(visitor);
+        squash.accept(visitor);
+        weights.accept(visitor);
+        List<Activity> activities = Arrays.asList(treadmill, squash, weights);
+        activities.forEach(activity -> activity.accept(visitor));
     }
 }
